@@ -10,13 +10,13 @@ SuperChero - Sistema de gestión para una tienda en línea de ropa.
 
 El proyecto consiste en la aplicación de los conceptos aprendidos en la certificación de backend, en este caso una API REST. La idea consiste en realizar un sistema de gestión para una tienda en línea de ropa (e-commerce), en el cual se pueda gestionar usuarios, pedidos y un catálogo de prendas organizadas de manera efectiva. Lo que busca el presente proyecto es resolver la problemática de centralizar la información y automatizar procesos involucrados en la venta de ropa.
 
-La propuesta está dirigido a administradores, los cuales podrán gestionar productos y usuarios, y supervisar los pedidos; y a clientes que podrán consultar las prendas disponibles y realizar pedidos de los productos existentes. La información a utilizar serán usuarios, prendas de ropam categorías de ropa, pedidos y estados de compra.
+La propuesta está dirigida a administradores, los cuales podrán gestionar productos y usuarios, y supervisar los pedidos; y a clientes que podrán consultar las prendas disponibles y realizar pedidos de los productos existentes. La información a utilizar serán usuarios, prendas de ropa, categorías de ropa, pedidos y estados de compra.
 
 ---
 
 ## 3. Objetivo general
 
-Desarrollar una API REST utilizando herramientas como Node.js, Express.js y una base de datos MonfoDB, donde se administre prendas de rppa, categorías, usuarios y pedidos de una tienda en línea de ropa, para garantizar gestión del catálogo y de los procesos de compra.
+Desarrollar una API REST utilizando herramientas como Node.js, Express.js y una base de datos MongoDB, donde se administren prendas de ropa, categorías, usuarios y pedidos de una tienda en línea de ropa, para garantizar la gestión del catálogo y de los procesos de compra.
 
 ---
 
@@ -34,7 +34,7 @@ Desarrollar una API REST utilizando herramientas como Node.js, Express.js y una 
 2. Como administrador, quiero editar la información de una prenda de ropa, para corregir o actualizar datos.
 3. Como administrador, quiero eliminar prendas (lógico), para evitar que la sigan comprando sin perder su historial.
 4. Como administrador, quiero poder crear y administrar categorías de prendas de ropa, para permitir la organización del catálogo.
-5. Como administrador, quiero ver los pedidos realizados, para gestonar y controlar los pedidos de la tienda.
+5. Como administrador, quiero ver los pedidos realizados, para gestionar y controlar los pedidos de la tienda.
 6. Como administrador, quiero cambiar el estado de los pedidos, para mantener informados a los clientes sobre el progreso de sus compras y dar seguimiento.
 7. Como administrador, quiero consultar el stock de las prendas según sus características propias, para gestionar las prendas y evitar faltas.
 8. Como cliente, quiero registrarme e iniciar sesión, para poder realizar pedidos.
@@ -49,8 +49,6 @@ Desarrollar una API REST utilizando herramientas como Node.js, Express.js y una 
 ---
 
 ## 6. Funcionalidades principales del proyecto
-
-**Ejemplo:**
 
 | Historia de usuario                            | Funcionalidad    |
 | ---------------------------------------------- | ---------------- |
@@ -100,7 +98,7 @@ Desarrollar una API REST utilizando herramientas como Node.js, Express.js y una 
 
 ### Order
 * user
-* items (contará con la información de cada prenda, talla, cantidad y precio)
+* items (contará con la información de cada prenda, cantidad y precio)
 * totalPrice
 * status (pendiente, en proceso, enviado, entregado, cancelado)
 * date
@@ -144,7 +142,7 @@ Desarrollar una API REST utilizando herramientas como Node.js, Express.js y una 
 * El stock de una prenda no puede ser negativo.
 * El precio de una prenda no puede ser negativo.
 * Solo los administradores pueden crear, actualizar o eliminar prendas y categorías.
-* Al crear una prenda, su estado "active" debe ser verdadero por defecto, el stock debe ser mayor o igual a 1 y el precio debe ser mayor a 1.
+* Al crear una prenda, su estado "active" debe ser verdadero por defecto, el stock debe ser mayor o igual a 0 y el precio debe ser mayor a 0.
 * Solo los clientes pueden crear pedidos.
 * Los clientes deben iniciar sesión para realizar pedidos y consultar su historial de pedidos.
 * Los clientes solo pueden actualizar o cancelar sus propios pedidos.
@@ -161,7 +159,7 @@ Desarrollar una API REST utilizando herramientas como Node.js, Express.js y una 
 * No existen pedidos sin prendas, es decir, un pedido debe contener al menos una prenda para ser válido.
 * Las tallas de una prenda deben ser una de las siguientes: "XS", "S", "M", "L", "XL", "XXL".
 * Una prenda se asocia a una categoría activa
-* Las prendas inactivas y las catgeoría no se muestran en el catálogo para los clientes, pero sí para los administradores.
+* Las prendas y categorías inactivas no se muestran en el catálogo para los clientes, pero sí para los administradores.
 * Los usuarios con active = false no podrán iniciar sesión ni realizar operaciones dentro del sistema.
 
 ---
