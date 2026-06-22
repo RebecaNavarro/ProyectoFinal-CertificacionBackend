@@ -5,6 +5,8 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import clothesRoutes from "./routes/clothesRoutes.js";
 import userRoutes from "./routes/authRoutes.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
+import orderRoutes from "./routes/orderRoutes.js";
+
 
 dotenv.config();
 
@@ -23,6 +25,7 @@ app.get("/", (req, res) => {
 app.use("/api/categories", categoryRoutes);
 app.use("/api/clothes", clothesRoutes);
 app.use("/api/auth", userRoutes);
+app.use("/api/orders", orderRoutes);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
