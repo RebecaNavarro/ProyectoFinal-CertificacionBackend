@@ -1,7 +1,7 @@
 import { Category } from "../data/category.js";
 
-export async function getAllCategories() {
-    const categoriesList = await Category.find();
+export async function getAllCategories(filter = {}) {
+    const categoriesList = await Category.find(filter);
     return categoriesList;
 }
 

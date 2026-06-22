@@ -58,6 +58,15 @@ export async function findOrderById(req, res, next) {
   }
 }
 
+export async function findOrdersByUser(req, res, next) {
+  try {
+    const orders = await getOrdersByUser(req.params.userId);
+    res.json(orders);
+  } catch (error) {
+    next(error);
+  }
+}
+
 export async function changeOrderStatus(req, res, next) {
   try {
     const { status } = req.body;

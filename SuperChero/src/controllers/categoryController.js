@@ -10,7 +10,9 @@ import {
 
 export async function findAllCategories(req, res, next) {
     try {
-        const categories = await getAllCategories();
+        const { active } = req.query;
+        const filter = { active: active === undefined ? true : active === "true" };
+        const categories = await getAllCategories(filter);
         res.json(categories);
     } catch (error) {
         next(error);
@@ -22,7 +24,7 @@ export async function findCategoryById(req, res, next) {
         const category = await getCategoryById(req.params.id);
         if (!category) {
             const error = new Error("Categoría no encontrada");
-            error.status = 404;
+            error.statusCode = 404;
             return next(error);
         }
         res.json(category);
@@ -36,7 +38,7 @@ export async function createCategory(req, res, next) {
         const errors = validateCategoryBody(req.body);
         if (errors.length > 0) {
             const error = Error(errors.join(", "));
-            error.status = 400;
+            error.statusCode = 400;
             return next(error);
         }
         const categoryCreated = await addCategory(req.body);
@@ -51,7 +53,7 @@ export async function updateCategory(req, res, next) {
         const categoryUpdated = await editCategory(req.params.id, req.body);
         if (!categoryUpdated) {
             const error = Error("Categoría no encontrada");
-            error.status = 404;
+            error.statusCode = 404;
             return next(error);
         }
         res.json(categoryUpdated);
@@ -65,7 +67,7 @@ export async function deleteCategory(req, res, next) {
         const categoryDeleted = await removeCategory(req.params.id);
         if (!categoryDeleted) {
             const error = Error("Categoría no encontrada");
-            error.status = 404;
+            error.statusCode = 404;
             return next(error);
         }
         res.json({ message: "Categoría eliminada correctamente" });

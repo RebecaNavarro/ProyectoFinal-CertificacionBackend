@@ -125,6 +125,7 @@ Desarrollar una API REST utilizando herramientas como Node.js, Express.js y una 
 | GET    | /api/orders           | Listar todos los pedidos          |
 | GET    | /api/orders/:id       | Obtener detalles de un pedido |
 | GET    | /api/orders/user/:userId | Listar pedidos de un cliente |
+| GET    | /api/orders/mine      | Listar mis pedidos como cliente |
 | POST   | /api/orders           | Crear nuevo pedido      |
 | PATCH  | /api/orders/:id       | Actualizar estado del pedido |
 | GET    | /api/users           | Listar usuarios          |

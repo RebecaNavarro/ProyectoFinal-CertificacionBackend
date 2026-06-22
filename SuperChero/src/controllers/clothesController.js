@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import {
   getClothes,
   getClothById,
@@ -16,7 +17,7 @@ export async function findClothes(req, res, next) {
     if (category) filter.category = category;
     if (size) filter.size = size;
     if (color) filter.color = color;
-    if (active !== undefined) filter.active = active === "true";
+    filter.active = active === undefined ? true : active === "true";
 
     const pageNumber = Number(page) || 1;
     const limitNumber = Number(limit) || 10;
@@ -57,7 +58,11 @@ export async function addCloth(req, res, next) {
       error.statusCode = 400;
       return next(error);
     }
-
+    if (!mongoose.isValidObjectId(req.body.category)) {
+      const error = Error("El campo 'category' debe ser un id válido");
+      error.statusCode = 400;
+      return next(error);
+    }
     const category = await getCategoryById(req.body.category);
     if (!category || !category.active) {
       const error = Error("La categoría indicada no existe o está inactiva");

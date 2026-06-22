@@ -34,3 +34,20 @@ export async function loginUser({ email, password }) {
   const token = generateToken({ id: user._id, role: user.role });
   return { token, user: sanitizeUser(user) };
 }
+
+export async function getAllUsers() {
+  return await User.find().select("-password");
+}
+
+export async function getUserById(id) {
+  return await User.findById(id).select("-password");
+}
+
+export async function updateUserById(id, data) {
+  const { password, ...rest } = data; 
+  return await User.findByIdAndUpdate(id, rest, { new: true, runValidators: true }).select("-password");
+}
+
+export async function softDeleteUserById(id) {
+  return await User.findByIdAndUpdate(id, { active: false }, { new: true }).select("-password");
+}
