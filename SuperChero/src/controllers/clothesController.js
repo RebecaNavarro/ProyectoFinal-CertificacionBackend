@@ -6,7 +6,7 @@ import {
   softDeleteClothById
 } from "../services/clothesService.js";
 import { getCategoryById } from "../services/categoryService.js";
-import { validateClothBody } from "../utils/clothValidator.js";
+import { validateClothBody } from "../utils/clothesValidator.js";
 
 export async function findClothes(req, res, next) {
   try {
@@ -18,7 +18,6 @@ export async function findClothes(req, res, next) {
     if (color) filter.color = color;
     if (active !== undefined) filter.active = active === "true";
 
-    // Paginacion
     const pageNumber = Number(page) || 1;
     const limitNumber = Number(limit) || 10;
     if (pageNumber <= 0 || limitNumber <= 0) {

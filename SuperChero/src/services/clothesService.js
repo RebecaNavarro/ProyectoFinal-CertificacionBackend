@@ -1,4 +1,4 @@
-import { Clothes } from "../data/clothesModel.js";
+import { Clothes } from "../data/clothes.js";
 
 export async function getClothes({ filter = {}, sortBy, order, page = 1, limit = 10 }) {
   const sort = {};
