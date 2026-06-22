@@ -2,6 +2,8 @@ import dotenv from "dotenv";
 import express from "express";
 import { connectDB } from "./data/mongoConnection.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
+import clothesRoutes from "./routes/clothesRoutes.js";
+import { errorHandler } from "./middlewares/errorHandler.js";
 
 dotenv.config();
 
@@ -18,6 +20,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/categories", categoryRoutes);
+app.use("/api/clothes", clothesRoutes);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
