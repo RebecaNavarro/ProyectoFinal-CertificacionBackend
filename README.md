@@ -145,7 +145,12 @@ Ejemplo: `GET /api/clothes?category=<id>&size=M&page=1&limit=5&sortBy=price&orde
 | GET | `/api/orders/:id` | Obtener un pedido | Dueño o Admin |
 | PATCH | `/api/orders/:id/status` | Cambiar el estado de un pedido | Admin |
 | PATCH | `/api/orders/:id/cancel` | Cancelar un pedido (devuelve el stock) | Dueño o Admin |
+
+### API externa de conversión de moneda — `/api/clothes/:id/price`
+
+| GET | `/api/clothes/:id/price` | Precio de una prenda convertido a otra moneda (API externa) | Público |
  
+Ejemplo: `GET /api/clothes/6a38e8227c113b2563a791da/price?currency=USD` 
 ---
  
 ## 8. Reglas de negocio principales
@@ -211,5 +216,6 @@ A continuación se documenta el flujo de pruebas de la API con sus respectivas c
  
 ![Cancelar pedido](capturasPostman/image-9.png)
  
- 
+**Consultar precio de prenda en otra moneda (API externa)**
 
+![Consultar en USD](capturasPostman/image-10.png)

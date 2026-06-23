@@ -7,7 +7,10 @@ import {
   softDeleteClothById
 } from "../services/clothesService.js";
 import { getCategoryById } from "../services/categoryService.js";
+import { getExchangeRate } from "../services/exchangeService.js";
 import { validateClothBody } from "../utils/clothesValidator.js";
+
+const BASE_CURRENCY = "BOB";
 
 export async function findClothes(req, res, next) {
   try {
@@ -100,6 +103,46 @@ export async function removeCloth(req, res, next) {
       return next(error);
     }
     res.json(deleted);
+  } catch (error) {
+    next(error);
+  }
+}
+
+
+
+export async function getClothPrice(req, res, next) {
+  try {
+    const currency = (req.query.currency || "USD").toUpperCase();
+
+    const cloth = await getClothById(req.params.id);
+    if (!cloth) {
+      const error = Error("Prenda no encontrada");
+      error.statusCode = 404;
+      return next(error);
+    }
+    if (currency === BASE_CURRENCY) {
+      return res.json({
+        clothes: cloth.name,
+        baseCurrency: BASE_CURRENCY,
+        basePrice: cloth.price,
+        targetCurrency: currency,
+        rate: 1,
+        convertedPrice: cloth.price
+      });
+    }
+
+    const { rate, updatedAt } = await getExchangeRate(BASE_CURRENCY, currency);
+    const convertedPrice = Math.round(cloth.price * rate * 100) / 100;
+
+    res.json({
+      clothes: cloth.name,
+      baseCurrency: BASE_CURRENCY,
+      basePrice: cloth.price,
+      targetCurrency: currency,
+      rate,
+      convertedPrice,
+      rateUpdatedAt: updatedAt
+    });
   } catch (error) {
     next(error);
   }
