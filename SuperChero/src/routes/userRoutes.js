@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { 
-    register, 
     createUser,
     findUsers, 
     findUserById, 
@@ -15,7 +14,6 @@ router.use(authenticate, authorize("admin"));
 
 router.get("/", findUsers);
 router.get("/:id", findUserById);
-router.post("/", register);
 router.post("/", createUser);    
 router.patch("/:id", editUser);
 router.delete("/:id", removeUser);
