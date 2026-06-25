@@ -8,8 +8,7 @@ export const swaggerSpec = {
   },
   servers: [
     { url: "http://localhost:3000", description: "Servidor de desarrollo local" },
-    // Reemplaza por mi URL pública de Render cuando esté desplegada:
-    { url: "https://TU-APP.onrender.com", description: "Servidor de producción (Render)" },
+    { url: "https://proyectofinal-certificacionbackend.onrender.com", description: "Servidor de producción (Render)" },
   ],
   tags: [
     { name: "Autenticación", description: "Registro e inicio de sesión" },

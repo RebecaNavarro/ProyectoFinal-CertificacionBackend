@@ -219,3 +219,11 @@ A continuación se documenta el flujo de pruebas de la API con sus respectivas c
 **Consultar precio de prenda en otra moneda (API externa)**
 
 ![Consultar en USD](capturasPostman/image-10.png)
+
+## 10. Unit tests
+
+![Unit test imagen 1](capturasUnitTests/UnitTests1.jpg)
+
+![Unit test imagen 2](capturasUnitTests/UnitTests2.jpg)
+
+![Unit test imagen 3](capturasUnitTests/UnitTests3.jpg)
